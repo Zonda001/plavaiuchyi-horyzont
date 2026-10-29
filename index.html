@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Візуалізація методу плаваючого горизонту</title>
+  <link rel="stylesheet" href="css/horizon.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Візуалізація методу плаваючого горизонту</h1>
+    <p class="specs">
+      <span>Розмір екрана: <b>800 × 600</b> пікселів</span>
+      <span>Кольоровий режим: <b>True Color</b> (RGB, по 8 розрядів на канал, 24 біти на піксель)</span>
+    </p>
+  </header>
+  <main>
+    <div class="layout">
+  <section class="stage">
+    <canvas id="cv" width="800" height="600"></canvas>
+    <div class="player">
+      <button id="bFirst" title="На початок">⏮</button>
+      <button id="bPrev" title="Крок назад">◀</button>
+      <button id="bPlay" title="Відтворити / пауза">▶</button>
+      <button id="bNext" title="Крок уперед">▶|</button>
+      <button id="bLast" title="Готове зображення">⏭</button>
+      <button id="bSvg" title="Зберегти поточне зображення у форматі SVG">SVG</button>
+      <span class="step" id="stepLbl"></span>
+      <label>Швидкість <input type="range" id="speed" min="1" max="30" value="8" style="width:110px"></label>
+    </div>
+    <div id="info"></div>
+    <div class="legend">
+      <span style="--c: var(--top)">верхня сторона</span>
+      <span style="--c: var(--bottom)">нижня сторона</span>
+      <span style="--c: var(--accent)">поточна крива</span>
+      <span class="dash" style="--c: var(--hidden)">невидимі ділянки</span>
+      <span class="dash" style="--c: var(--hor-up)">верхній горизонт</span>
+      <span class="dash" style="--c: var(--hor-low)">нижній горизонт</span>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <h2>Параметри</h2>
+    <div class="field">
+      <label for="preset">Поверхня</label>
+      <select id="preset"></select>
+    </div>
+    <div class="field" id="formulaRow">
+      <label for="formula">z = f(x, y), x, y ∈ [−3; 3]</label>
+      <input type="text" id="formula" value="sin(x*y/2)*exp(-(x^2+y^2)/8)">
+      <div id="formulaErr"></div>
+    </div>
+    <div class="field">
+      <label for="az">Поворот навколо вертикалі <output id="azOut"></output></label>
+      <input type="range" id="az" min="0" max="359" value="30">
+    </div>
+    <div class="field">
+      <label for="el">Кут нахилу погляду <output id="elOut"></output></label>
+      <input type="range" id="el" min="-60" max="80" value="28">
+    </div>
+    <div class="field">
+      <label for="hs">Масштаб висоти <output id="hsOut"></output></label>
+      <input type="range" id="hs" min="0.1" max="2" step="0.05" value="0.7">
+    </div>
+    <div class="field">
+      <label for="n">Кількість кривих <output id="nOut"></output></label>
+      <input type="range" id="n" min="6" max="90" value="40">
+    </div>
+    <div class="field">
+      <label for="sub">Деталізація кривої <output id="subOut"></output></label>
+      <input type="range" id="sub" min="1" max="8" value="4">
+    </div>
+    <label class="check"><input type="checkbox" id="both" checked> Сітка в обох напрямках</label>
+    <label class="check"><input type="checkbox" id="showHidden"> Показувати невидимі лінії</label>
+    <label class="check"><input type="checkbox" id="showHor" checked> Показувати горизонти</label>
+    <div class="stats" id="stats"></div>
+  </aside>
+    </div>
+  </main>
+  <footer class="footer">
+    Курсова робота з дисципліни «Комп’ютерна графіка», тема № 113. ВНТУ, 2026.
+  </footer>
+  <script src="js/horizon.js"></script>
+</body>
+</html>

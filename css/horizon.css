@@ -1,0 +1,79 @@
+/* Застосунок «Візуалізація методу плаваючого горизонту» */
+:root {
+  --panel: #fbf6ea;
+  --ink: #2a2118;
+  --muted: #6b5d4c;
+  --line: #d8c9ab;
+  --top: #2e4a62;      /* верхня сторона поверхні */
+  --bottom: #8b1e2d;   /* нижня сторона поверхні */
+  --accent: #c8902e;   /* поточна крива */
+  --hor-up: #d9822b;   /* верхній горизонт */
+  --hor-low: #6a4c93;  /* нижній горизонт */
+  --hidden: #9a8f80;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: #f4ecdc;
+}
+.top { background: #7a1f2b; color: #f4ecdc; border-bottom: 5px solid var(--accent); padding: 12px 24px; }
+.top h1 { margin: 0; font-size: 24px; }
+.specs { margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 6px 28px; font-size: 14px; opacity: .92; }
+main { width: max-content; margin: 0 auto; padding: 18px 16px 24px; }
+.footer { text-align: center; font-size: 13px; color: var(--muted); padding: 0 16px 20px; }
+.layout {
+  display: grid;
+  grid-template-columns: 826px 300px;
+  gap: 16px;
+  align-items: start;
+}
+.stage, .panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+}
+#cv {
+  width: 800px;
+  height: 600px;
+  display: block;
+  background: #fffdf7;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: grab;
+  touch-action: none;
+}
+#cv:active { cursor: grabbing; }
+.player { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; }
+.player button {
+  min-width: 40px; height: 34px;
+  border: 1px solid var(--line); border-radius: 6px;
+  background: #fff; color: var(--ink); font-size: 15px; cursor: pointer;
+}
+.player button:hover { border-color: var(--accent); }
+.player .step { margin-left: 6px; font-variant-numeric: tabular-nums; }
+.player label { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); }
+#info { margin-top: 8px; font-size: 14px; min-height: 40px; line-height: 1.45; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; font-size: 13px; color: var(--muted); }
+.legend span::before {
+  content: ""; display: inline-block; width: 22px; height: 0; margin-right: 6px;
+  vertical-align: middle; border-top: 3px solid var(--c);
+}
+.legend .dash::before { border-top-style: dashed; }
+.panel h2 { font-size: 16px; margin: 4px 0 10px; color: #7a1f2b; }
+.field { margin-bottom: 12px; }
+.field > label { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px; }
+.field output { font-variant-numeric: tabular-nums; color: var(--muted); }
+select, input[type=text] {
+  width: 100%; padding: 6px 8px; font-size: 14px;
+  border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--ink);
+}
+input[type=range] { width: 100%; accent-color: var(--top); }
+.check { display: flex; align-items: center; gap: 8px; font-size: 14px; margin: 6px 0; }
+#formulaRow { display: none; }
+#formulaErr { color: var(--bottom); font-size: 13px; min-height: 16px; margin-top: 4px; }
+.stats { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; line-height: 1.6; }
